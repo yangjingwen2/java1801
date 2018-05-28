@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="com.qianfeng"/>
+
+    <context:property-placeholder location="jdbc.properties"/>
+    <bean id="dataSourceRead" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driver}"/>
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="password" value="${password}"/>
+        <property name="user" value="${user}"/>
+        <property name="maxIdleTime" value="27800"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="minPoolSize" value="2"/>
+    </bean>
+
+    <bean id="dataSourceWrite" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driver}"/>
+        <property name="jdbcUrl" value="jdbc:mysql://192.168.72.188/java1801"/>
+        <property name="password" value="${password}"/>
+        <property name="user" value="${user}"/>
+        <property name="maxIdleTime" value="27800"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="minPoolSize" value="2"/>
+    </bean>
+
+    <bean id="sqlSessionFactoryRead" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceRead"/>
+        <property name="mapperLocations" value="classpath:mapper/demo.mapper.xml"/>
+    </bean>
+
+    <bean id="sqlSessionFactoryWrite" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceWrite"/>
+        <property name="mapperLocations" value="classpath:mapper/demo.mapper.xml"/>
+    </bean>
+
+    <bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceWrite"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager2"/>
+
+
+</beans>

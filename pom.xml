@@ -6,7 +6,12 @@
 
     <groupId>com.qianfeng</groupId>
     <artifactId>demo21801</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>demo_read_write</module>
+        <module>demo2_read_write</module>
+    </modules>
 
 
 </project>
