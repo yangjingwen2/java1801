@@ -20,7 +20,7 @@
         WHERE _id=#{id}
     </select>
 
-    <insert id="saveOne">
-        INSERT INTO tb_demo(name) VALUES (#{name})
+    <insert id="saveOne" parameterType="com.qianfeng.DemoInfo">
+        INSERT INTO tb_demo(_id,name) VALUES (#{id},#{name})
     </insert>
 </mapper>

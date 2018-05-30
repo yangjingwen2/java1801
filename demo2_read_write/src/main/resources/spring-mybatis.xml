@@ -20,7 +20,7 @@
 
     <bean id="dataSourceWrite" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${driver}"/>
-        <property name="jdbcUrl" value="jdbc:mysql://192.168.72.188/java1801"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:8066/TESTDB?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="password" value="${password}"/>
         <property name="user" value="${user}"/>
         <property name="maxIdleTime" value="27800"/>

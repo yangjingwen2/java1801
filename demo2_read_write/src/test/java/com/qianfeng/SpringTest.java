@@ -17,7 +17,12 @@ public class SpringTest {
 
     @Test
     public void testCase1(){
-        writeDao.save("lisi");
+        for (int i=3001;i<4000;i++) {
+            DemoInfo demoInfo = new DemoInfo();
+            demoInfo.setId(i);
+            demoInfo.setName("lisi"+i);
+            writeDao.save(demoInfo);
+        }
     }
 
     @Test

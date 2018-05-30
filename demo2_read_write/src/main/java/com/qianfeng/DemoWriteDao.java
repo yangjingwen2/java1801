@@ -17,7 +17,7 @@ public class DemoWriteDao extends SqlSessionDaoSupport {
         super.setSqlSessionFactory(sqlSessionFactory);
     }
 
-    public void save(String name){
-        getSqlSession().insert("com.qianfeng.DemoInfoMapper.saveOne",name);
+    public void save(DemoInfo demoInfo){
+        getSqlSession().insert("com.qianfeng.DemoInfoMapper.saveOne",demoInfo);
     }
 }
